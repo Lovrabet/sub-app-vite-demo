@@ -1,110 +1,64 @@
 import React from "react";
-import { Typography, Card, Row, Col, Statistic, Button, Space } from "antd";
-import {
-  UserOutlined,
-  FileTextOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { Typography, Button } from "antd";
+import { useNavigate } from "react-router";
+import dayjs from "dayjs";
+import "dayjs/locale/zh-cn";
+
+dayjs.locale("zh-cn");
 
 const { Title, Paragraph } = Typography;
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+  const currentTime = dayjs().format("YYYY年MM月DD日 dddd");
+  
   return (
-    <div>
-      <Title level={2}>欢迎来到 React SPA 应用</Title>
-      <Paragraph>
-        这是一个使用 React 18、React Router v7、Ant Design v5 和 Vite v6
-        构建的现代化单页应用。
-      </Paragraph>
+    <div style={{ padding: "20px 0",textAlign: "center" }}>
+      {/* 欢迎区域 */}
+      <div style={{ marginBottom: 40 }}>
+        <Title level={3} style={{ margin: 0 }}>欢迎回来</Title>
+        <Paragraph style={{ color: "#666", marginTop: 8 }}>
+          {currentTime}
+        </Paragraph>
+      </div>
 
-      <Row gutter={16} style={{ marginTop: 24 }}>
-        <Col span={8}>
-          <Card>
-            <Statistic
-              title="用户数量"
-              value={1128}
-              prefix={<UserOutlined />}
-            />
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card>
-            <Statistic
-              title="文档数量"
-              value={93}
-              prefix={<FileTextOutlined />}
-            />
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card>
-            <Statistic title="配置项" value={15} prefix={<SettingOutlined />} />
-          </Card>
-        </Col>
-      </Row>
-
-      <Card style={{ marginTop: 24 }}>
-        <Title level={3}>技术栈</Title>
-        <Row gutter={[16, 16]}>
-          <Col span={6}>
-            <Card size="small">
-              <div style={{ textAlign: "center" }}>
-                <Title level={4}>React 18</Title>
-                <Paragraph>稳定的 React 版本，支持并发特性</Paragraph>
-              </div>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card size="small">
-              <div style={{ textAlign: "center" }}>
-                <Title level={4}>React Router v7</Title>
-                <Paragraph>现代化的路由解决方案</Paragraph>
-              </div>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card size="small">
-              <div style={{ textAlign: "center" }}>
-                <Title level={4}>Ant Design v5</Title>
-                <Paragraph>企业级 UI 设计语言</Paragraph>
-              </div>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card size="small">
-              <div style={{ textAlign: "center" }}>
-                <Title level={4}>Vite v6</Title>
-                <Paragraph>下一代前端构建工具</Paragraph>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-      </Card>
-
-      <Card style={{ marginTop: 24 }}>
-        <Title level={3}>快速开始</Title>
-        <Space direction="vertical" style={{ width: "100%" }}>
-          <Paragraph>
-            点击左侧菜单可以导航到不同的页面，体验完整的应用功能。
-          </Paragraph>
-          <Space>
-            <Button
-              type="primary"
-              onClick={() => window.open("https://react.dev", "_blank")}
-            >
-              学习 React
-            </Button>
-            <Button onClick={() => window.open("https://ant.design", "_blank")}>
-              查看 Ant Design
-            </Button>
-            <Button onClick={() => window.open("https://vitejs.dev", "_blank")}>
-              了解 Vite
-            </Button>
-          </Space>
-        </Space>
-      </Card>
+      {/* Hero区域 */}
+      <div style={{ 
+        textAlign: "center", 
+        padding: "60px 20px",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        borderRadius: 12,
+        color: "#fff"
+      }}>
+        <Title style={{ color: "#fff", fontSize: 48, marginBottom: 16 }}>
+          <span style={{ fontSize: 48 }}>🚀</span> 智能CRM管理系统
+        </Title>
+        <Paragraph style={{ 
+          color: "rgba(255, 255, 255, 0.9)", 
+          fontSize: 18,
+          marginBottom: 32
+        }}>
+          一站式客户关系管理平台，助力企业销售增长
+        </Paragraph>
+        <Button 
+          type="primary" 
+          size="large" 
+          onClick={() => navigate("/crm")}
+          style={{
+            height: 48,
+            paddingLeft: 32,
+            paddingRight: 32,
+            fontSize: 16,
+            backgroundColor: "#fff",
+            color: "#764ba2",
+            border: "none"
+          }}
+        >
+          立即开始
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,0 +1,226 @@
+/* 覆盖 react-grid-layout 默认样式 */
+.react-grid-layout {
+    position: relative;
+}
+
+.react-grid-item {
+    transition: all 200ms ease;
+    transition-property: left, top;
+}
+
+.react-grid-item.cssTransforms {
+    transition-property: transform;
+}
+
+.react-grid-item>.react-resizable-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZG90cyBmaWxsPSIjOTk5IiBvcGFjaXR5PSIwLjQiPgo8Y2lyY2xlIGN4PSI1IiBjeT0iNSIgcj0iMSIvPgo8Y2lyY2xlIGN4PSI1IiBjeT0iMSIgcj0iMSIvPgo8Y2lyY2xlIGN4PSIxIiBjeT0iNSIgcj0iMSIvPgo8L2RvdHM+Cjwvc3ZnPgo=');
+    background-position: bottom right;
+    padding: 0 3px 3px 0;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    box-sizing: border-box;
+    cursor: se-resize;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.react-grid-item:hover>.react-resizable-handle {
+    opacity: 1;
+}
+
+.react-grid-item.react-grid-placeholder {
+    background: #3b82f6;
+    opacity: 0.2;
+    transition-duration: 100ms;
+    z-index: 2;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    border: 2px dashed #3b82f6;
+    border-radius: 8px;
+}
+
+/* 自定义样式 */
+.admin-layout {
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+/* 默认模式 - 基础样式 */
+.admin-layout.default-mode .react-grid-item {
+    border: none;
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* 开发模式 - 显示模块边框便于调试 */
+.admin-layout.development-mode .react-grid-item {
+    border: none;
+    border-radius: 12px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.admin-layout.development-mode .react-grid-item:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* 生产模式 - 无边框，无阴影，像真实应用 */
+.admin-layout.production-mode {
+    background-color: #ffffff;
+}
+
+.admin-layout.production-mode .react-grid-item {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+    box-shadow: none;
+}
+
+.admin-layout.production-mode .react-grid-item:hover {
+    box-shadow: none;
+}
+
+.admin-layout.production-mode .layout-content {
+    padding: 0;
+}
+
+.admin-layout.production-mode .module-content {
+    padding: 20px;
+}
+
+.layout-controls {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.layout-content {
+    /* padding: 24px; */
+}
+
+.layout-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 控制条提示文字样式，替代行内样式 */
+.layout-tip {
+    color: #666666;
+}
+
+.module-content {
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.module-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1f2937;
+    flex-shrink: 0;
+}
+
+/* 表格模块特殊样式 */
+.layout-item[data-module="table"] .module-content {
+    padding: 16px;
+}
+
+.layout-item[data-module="table"] .module-content>div:last-child {
+    flex: 1;
+    overflow: auto;
+    margin-top: 8px;
+}
+
+/* 搜索模块样式 */
+.layout-item[data-module="search"] .module-content {
+    justify-content: center;
+}
+
+/* 分页模块样式 */
+.layout-item[data-module="pagination"] .module-content {
+    justify-content: center;
+}
+
+/* 响应式侧边栏网格布局 */
+.responsive-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.responsive-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+}
+
+/* 当侧边栏模块容器较窄时的响应式调整 */
+.layout-item[data-module="sidebar"] {
+    container-type: inline-size;
+}
+
+/* 容器查询 - 现代浏览器支持 */
+@container (max-width: 280px) {
+    .responsive-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .responsive-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 媒体查询备用方案 - 适用于所有浏览器 */
+@media (max-width: 480px) {
+    .responsive-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .responsive-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .layout-controls {
+        padding: 12px;
+    }
+
+    .layout-controls>* {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .layout-content {
+        padding: 10px;
+    }
+
+    .module-content {
+        padding: 12px;
+    }
+
+    .module-title {
+        font-size: 14px;
+    }
+}

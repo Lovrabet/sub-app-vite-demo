@@ -2,7 +2,7 @@ import React from "react";
 import { isInIcestark } from "@ice/stark-app";
 import { Outlet, useNavigate, useLocation } from "react-router";
 import { Layout, Menu, theme } from "antd";
-import { HomeOutlined, UserOutlined, SettingOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, SettingOutlined, DashboardOutlined, TableOutlined, TeamOutlined } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
@@ -15,9 +15,24 @@ const MainLayout: React.FC = () => {
 
   const menuItems = [
     {
-      key: "/",
+      key: "/portal",
       icon: <HomeOutlined />,
-      label: "首页",
+      label: "Portal",
+    },
+    {
+      key: "/crm-dashboard",
+      icon: <DashboardOutlined />,
+      label: "CRM 统计",
+    },
+    {
+      key: "/grid-admin",
+      icon: <TableOutlined />,
+      label: "网格管理",
+    },
+    {
+      key: "/customer360",
+      icon: <TeamOutlined />,
+      label: "客户360",
     },
     {
       key: "/about",
@@ -35,7 +50,7 @@ const MainLayout: React.FC = () => {
     navigate(key);
   };
 
-  // 可选：根据isInIcestark()判断当前运行环境，被嵌入时，不渲染layout布局
+  // 如果被嵌入在 icestark 应用中, 则直接渲染内容, 不渲染布局导航
   if (isInIcestark()) {
     return (
       <div style={{ padding: "16px 20px" }}>

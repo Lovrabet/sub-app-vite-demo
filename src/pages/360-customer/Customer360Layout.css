@@ -1,0 +1,58 @@
+/* Customer360 布局样式 */
+
+/* 编辑模式指示器 */
+.edit-mode-indicator {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: #1890ff;
+  color: #fff;
+  padding: 4px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease-out;
+}
+
+/* 动画效果 */
+@keyframes slideDown {
+  from {
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 生产模式样式优化 */
+.customer360-production-mode .react-grid-item {
+  transition: none !important;
+}
+
+.customer360-production-mode .react-resizable-handle {
+  display: none !important;
+}
+
+/* 开发模式样式优化 */
+.customer360-development-mode .react-grid-item {
+  border: 1px dashed rgba(24, 144, 255, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.customer360-development-mode .react-grid-item:hover {
+  border-color: rgba(24, 144, 255, 0.6);
+  background: rgba(24, 144, 255, 0.02);
+}
+
+/* 移动端响应式优化 */
+@media (max-width: 768px) {
+  .edit-mode-indicator {
+    font-size: 11px;
+    padding: 3px 12px;
+    top: 56px;
+  }
+}
